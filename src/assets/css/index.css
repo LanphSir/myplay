@@ -34,12 +34,7 @@ svg{
 i{
     cursor: pointer;
 }
-/* .zan{
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    background: url("../img/顶.svg") no-repeat 0 9999px;
-} */
+
 #app{
     display: flex;
     display: -webkit-flex;
@@ -142,7 +137,7 @@ i{
 #index .main{
     flex: 1;
     padding: 20px 30px;
-    padding-bottom: 60px;
+    padding-bottom: 120px;
     overflow-y: scroll;
 }
 .lbt{
@@ -155,13 +150,12 @@ i{
     height: 100%;
 }
 #index .player{
-    width: 100%;    
+    /* width: 100%;     */
     position: fixed;
     bottom: 0px;   
     z-index: 999; 
 }
 #index .player>audio{
-    width: 100%;
     outline: none;
 }
 /* .listbut{
@@ -334,19 +328,25 @@ video{
 }
 .newsong>.items>.item:hover{
     background-color: #ccc;
+}
+.newsong>.items>.item-head:hover{
+    background-color: transparent;
     opacity: 0.75;
 }
 .newsong>.items>.item{
-    width: 48%;
     height: auto;
     margin: 1%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    align-items: center;
 }
 .newsong>.items>.item .img-wrap{
     width: 100px;
     height: auto;
+}
+.newsong .index{
+    margin: 0px 20px;
 }
 .column-wrap{
     display: -webkit-flex;
@@ -632,4 +632,62 @@ video{
 	-webkit-box-shadow:0px 4px 4px 2px rgba(0,0,0,.5);
 	box-shadow:0px 4px 4px 2px rgba(0,0,0,.5);
 	background:white;
+}
+.playList{
+    position: fixed;
+    z-index: 998;
+    left: 30px;
+    bottom: 30px;
+}
+.song-list{
+    position: fixed;
+    padding: 5px;
+    border: solid 2px lightblue;
+    left: 30px;
+    bottom: 70px;
+    height: 80%;
+    width: 350px;
+    background-color: white;
+    overflow-y:scroll ;
+    overflow-x: hidden;
+    white-space: nowrap; 
+}
+.song-list span{
+    display: inline-block;
+    max-width: 100px;
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow:ellipsis; 
+}
+.song-list li{
+    position: relative;
+}
+.song-list li>.el-icon-close{
+    position: absolute;
+    right: 5px;
+}
+#musicListbut:checked ~ .song-list{
+    display: block;
+}
+#musicListbut:not(checked) ~ .song-list{
+    display: none;
+}
+.song-list li{
+    padding: 8px 0px;
+    border-bottom:1px solid #EBEEF5;
+}
+.song-list li:hover{
+    background-color: #ccc;
+    opacity: 0.75;
+}
+.song-list li:last-child{
+    border-bottom:solid 0 ;
+}
+
+.song-list>.nosong{
+    text-align: center;
+    color: gray;
+    opacity: 0.75;
+    margin: 200px 0;
+    height: 100;
 }

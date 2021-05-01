@@ -1,5 +1,5 @@
 <template>
-<!-- 最新音乐 -->
+<!-- 最新热门音乐50首 -->
   <div class="newsongs">
     <!-- 分类标签 -->
     <ul class="hottags">
@@ -11,6 +11,7 @@
     <div class="newsong">
       <div class="items">
         <div class="item" v-for="(item,index) in songlist" @click="playMusic(item.id)" :key="index" :style="{width:100/1-2+'%'}">
+          <span class="index">{{index+1}}</span>
           <div class="img-wrap">
             <img :src="item.album.blurPicUrl" alt="">
             <button class="play"></button>

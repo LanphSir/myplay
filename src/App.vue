@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Top />
-    <Index />
+    <Index :isRouterAlive="isRouterAlive"/>
   </div>
 </template>
 
@@ -15,6 +15,24 @@ export default {
     Index,
     Top
   },
+  // provide(){
+  //   return{
+  //     reload:this.reload()
+  //   }
+  // },
+  data(){
+    return{
+      isRouterAlive:true
+    }
+  },
+  methods:{
+    // reload(){
+    //   this.isRouterAlive=false
+    //   this.$nextTick(function(){
+    //     this.isRouterAlive=true
+    //   })
+    // }
+  }
 }
 </script>
 

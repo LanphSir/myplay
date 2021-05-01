@@ -15,48 +15,48 @@ import newmv from './views/newmv.vue'
 // import info from './views/info/info.vue'
 import mvInfo from './views/info/mvInfo.vue'
 import songsInfo from './views/info/songsInfo.vue'
+import transfer from './views/transfer/transfer.vue'
 //配置路由
-const router=new VueRouter({
-    routes:[
+const router = new VueRouter({
+    routes: [
         {
             //默认
-            path:'/',
-            redirect:'/discovery'
-        },{
+            path: '/',
+            redirect: '/discovery'
+        }, {
             // 发现音乐
             path: '/discovery',
             component: discovery
-        },{
+        }, {
             // 搜索结果
             path: '/result',
             component: result
-        },{
+        }, {
             // 推荐歌单
-            path:'/songslist',
-            component:songslist
-        },{
+            path: '/songslist',
+            component: songslist
+        }, {
             // 最新音乐
-            path:'/newsongs',
-            component:newsongs
+            path: '/newsongs',
+            component: newsongs
         },
         {
             // 最新mv
-            path:'/newmv',
-            component:newmv
+            path: '/newmv',
+            component: newmv
         },
-        // {
-        //     //测试
-        //     path:'/items',
-        //     component:items
-        // },
         {
             //mv详细信息
-            path:'/mvInfo',
-            component:mvInfo
-        },{
+            path: '/mvInfo',
+            component: mvInfo
+        }, {
             // 歌单详细信息
-            path:'/songsInfo',
-            component:songsInfo
+            path: '/songsInfo',
+            component: songsInfo
+        },
+        {
+            path:'/transfer',
+            component:transfer
         }
     ]
 })

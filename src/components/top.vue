@@ -5,7 +5,7 @@
           <i class="el-icon-arrow-right" @click="toforward()"></i>
       </div>
       <div class="search" @click.stop="changesearchlist()">
-          <input type="text" v-model="inputValue" @keydown.enter="toResult()" @keyup="keyupEvent()" @keydown="keydownEvent()"  class="search-value">
+          <input type="text" v-model.trim="inputValue" @keydown.enter="toResult()" @keyup="keyupEvent()" @keydown="keydownEvent()"  class="search-value">
           <button class="search-but" @click="toResult()"><i class="el-icon-search"></i></button>
           <div class="searchlist" ref="searchlist">  
               <ul>
@@ -32,6 +32,11 @@ export default {
             // 搜索结果预览
             result:[]
         }
+    },
+    watch:{
+        // $route() {
+        //     this.$router.go(0);
+        // },
     },
     methods:{
         getSearch(keywords){
@@ -66,8 +71,9 @@ export default {
             // 提示用户
             this.$message.warning('请输入内容')
             }else{
-                // 去搜索页 携带数据
-                this.$router.push('/result?keywords='+this.inputValue)
+                // 先中转，再携带数据去搜索页
+                // this.$router.push('/result?keywords='+this.inputValue)
+                this.$router.push('/transfer?url='+'/result?keywords='+this.inputValue)
             }
         },
         //后退
@@ -78,16 +84,17 @@ export default {
         toforward(){
             this.$router.go(1);
         },
-        // 点击任意区域searchlist隐藏
+        // 点击搜索区域searchlist显示
         changesearchlist(){
             this.$refs.searchlist.style.display="block"
         },
         // 点击任意区域searchlist隐藏
         changedocument(){
-            let dom=this.$refs.searchlist
-            document.onclick=function(){
-                dom.style.display="none"
-            }
+            // let dom=this.$refs.searchlist
+            // document.onclick=function(){
+            //     dom.style.display="none"
+            // }
+            this.$indexjs.clickDocument(this.$refs.searchlist)
         },
 
     }

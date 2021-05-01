@@ -13,6 +13,13 @@ export default {
         var D=date.getDate();
         return Y+'-'+M+'-'+D;
     },
+    // 点击任意区域隐藏
+    clickDocument(dom){
+        // let dom=this.$refs.searchlist
+        document.onclick=function(){
+            dom.style.display="none"
+        }
+    },
     // 设置未加载或加载错误时图片
     // defaultImg(dom,img){
     //     dom.onerror=function(){
@@ -21,4 +28,6 @@ export default {
     //         dom.onerror=null
     //     }
     // }
+    // 中转
+   
 }

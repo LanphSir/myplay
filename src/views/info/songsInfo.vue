@@ -40,10 +40,16 @@
                 label=""
                 width="100">
                 <template slot-scope="scope">
-                    <div>
-                        <img :src="scope.row.al.picUrl" width="50" alt="">
-                        <button class="play"></button>
-                    </div>
+                    <el-image :src="scope.row.al.picUrl" lazy>
+                        <!-- <img :src="scope.row.al.picUrl" width="50" alt=""> -->
+                        <div slot="error" class="image-slot">
+                            <i class="el-icon-picture-outline"></i>
+                        </div>
+                        <!-- <button class="play"></button> -->
+                        <div slot="placeholder" class="image-slot" style="height:80px;">
+                            加载中<span class="dot">...</span>
+                        </div>
+                    </el-image>
                 </template>
             </el-table-column>
             <el-table-column
@@ -90,6 +96,7 @@ export default {
     data(){
         return {
             id:this.$route.query.id,
+            // 显示列表
             playlist:[],
         }
     },
