@@ -12,7 +12,7 @@
     <div class="btn-audio">
       <div class="btn-audio-info">
         <div class="btn-audio-img">
-          <img :src="img" alt="" />
+          <img :src="img !==null ? img:songImg_default" alt="" />
         </div>
         <div class="audio-auther-warp">
           <span class="songname" :title="this.songname">{{ songname }}</span
@@ -45,9 +45,12 @@
           @mouseenter="hoverVolume()"
           @mouseout="mouseoutVolume()"
         >
-          <div ref="volume" class="volume-container" @click="checkVolume">
-            <div ref="volumenow" class="volume-now"></div>
+          <div ref="volumebackground" class="volume-background">
+            <div ref="volume" class="volume-container" @click="checkVolume">
+              <div ref="volumenow" class="volume-now"></div>
+            </div>
           </div>
+          
           <i :class="voice" @click="mute()"></i>
         </div>
       </div>
@@ -56,6 +59,8 @@
 </template>
 
 <script>
+
+// import { computed } from 'vue';
 export default {
   name: "myaudio",
   props: {
@@ -75,10 +80,12 @@ export default {
       type: String,
     },
   },
+  // emits:["update:img"],
   data() {
     return {
       start: "00:00",
       end: "00:00",
+      songImg_default:require("../../assets/img/default_album.jpg"),
       // 当前播放位置
       currenttime: "",
       // 播放顺序
@@ -91,6 +98,10 @@ export default {
       voice: "volume",
     };
   },
+  // const dialogImg=computed({
+  //   get :()=>props.img,
+  //   set:(val)=>{context.emit("upadate:img",val)}
+  // }),
   created() {},
   watch: {
     url: function () {
@@ -124,7 +135,7 @@ export default {
     playSong() {
       let now = this.$refs.now;
       let audio = this.$refs.audio;
-
+      // console.log(this.url);
       this.playMusic = "pausesong";
       audio.play();
       this.currenttime = setInterval(() => {
@@ -159,7 +170,7 @@ export default {
     conversion(value) {
       let minute = Math.floor(value / 60);
       minute = minute.toString().length === 1 ? "0" + minute : minute;
-      let second = Math.round(value % 60);
+      let second = Math.floor(value % 60);
       second = second.toString().length === 1 ? "0" + second : second;
       return `${minute}:${second}`;
     },
@@ -173,7 +184,7 @@ export default {
     clearPlay() {
       this.start = "00:00";
       this.end = "00:00";
-      this.img = require("../../assets/img/default_album.jpg");
+      this.songImg_default = require("../../assets/img/default_album.jpg");
       this.$refs.now.style.width = 0;
       this.pauseSong();
     },
@@ -207,15 +218,15 @@ export default {
     },
     hoverVolume() {
       clearTimeout();
-      this.$refs.volume.style.display = "block";
+      this.$refs.volumebackground.style.display = "block";
       // setTimeout(()=>{
       //     // this.$refs.volume.style.display="none"
       // },2000)
     },
     mouseoutVolume() {
       setTimeout(() => {
-        this.$refs.volume.style.display = "none";
-      }, 2000);
+        this.$refs.volumebackground.style.display = "none";
+      }, 2500);
     },
   },
 };

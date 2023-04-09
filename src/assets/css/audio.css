@@ -160,6 +160,7 @@ i:hover{
 /* .btn-volume:hover .volume-container{
     display: block;
 } */
+
 .volume::before{
     content: "";
     display: inline-block;
@@ -182,14 +183,20 @@ i:hover{
 }
 .volume-container{
     position: relative;
-    display: none;
+    /* display: none; */
     height: 80px;
     width: 7px;
-    border: solid 1px #ccc;
+    /* border: solid 1px #ccc; */
     border-radius: 5px;
     box-sizing: content-box;
     margin: 0px auto;
-    background-color: #fff;
+    background-color: #ffffff;
+}
+.volume-background{
+    display: none;
+    padding: 5px;
+    background-color: rgb(119, 169, 213);
+    border-radius: 5px;
 }
 .volume-now{
     position: absolute;

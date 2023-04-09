@@ -662,9 +662,27 @@ video{
 .song-list li{
     position: relative;
 }
+.song-list li p{
+    display: inline-block;
+    max-width: 300px;
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow:ellipsis; 
+
+}
 .song-list li>.el-icon-close{
     position: absolute;
-    right: 5px;
+    right: 8px;
+    top: 25%;
+}
+.song-list li>.el-icon-close:hover{
+    background-color: red;
+}
+.song-list-del i{
+    padding: 8px;
+}
+.song-list-del i:hover{
+    background-color: red;
 }
 #musicListbut:checked ~ .song-list{
     display: block;
@@ -673,7 +691,8 @@ video{
     display: none;
 }
 .song-list li{
-    padding: 8px 0px;
+
+    padding: 8px 0px 8px 8px;
     border-bottom:1px solid #EBEEF5;
 }
 .song-list li:hover{

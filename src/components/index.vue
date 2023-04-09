@@ -40,7 +40,7 @@
         <label for="musicListbut" class="listbut"></label>
         <input type="checkbox" value="" id="musicListbut" v-model="checked"  hidden />
         <div class="song-list" ref="songlist">
-          <div class="">
+          <div class="song-list-del">
             <i class="el-icon-delete-solid" @click="clearList()">清空列表</i>
           </div>
           <ul class="" v-show="playList.length!=0">
@@ -50,9 +50,13 @@
               @click="playIndex = index"
               :title="item.name + '--' + item.ar[0].name + '--' + item.al.name"
             >
-              <span>{{ item.name }}</span>- 
-              <span>{{ item.ar[0].name }}</span>-
-              <span>{{ item.al.name }}</span>
+              <p>
+                <span>{{ item.name }}</span>
+                <span>&#8212;</span> 
+                <span>{{ item.ar[0].name }}</span>
+                <span>&#8212;</span>
+                <span>{{ item.al.name }}</span>
+              </p>
               <i class="el-icon-close" @click.stop="removeMusic(index)"></i>
             </li>
           </ul>
@@ -122,8 +126,6 @@ export default {
         this.getMusicInfo(data);
         this.playIndex = 0;
       }
-      
-      
     });
     window.$Bus.$on("isAutoplay", (data) => {
       this.isautoplay = data;
@@ -144,7 +146,7 @@ export default {
       // 是否自动播放
       isautoplay: "",
       // 播放地址
-      playUrl: "",
+      playUrl: null,
       // 播放列表
       playList: [],
       // 播放位置索引
@@ -172,7 +174,7 @@ export default {
         },
       }).then((res) => {
         this.playUrl = res.data.data[0].url;
-        // setSession("playUrl",this.playUrl)
+        setSession("playUrl",this.playUrl)
       });
     },
     // 获取歌曲信息
